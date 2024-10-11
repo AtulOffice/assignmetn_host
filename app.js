@@ -17,6 +17,7 @@ app.use("/api/v1", datarouter);
 app.use("/api/v1", infinalRouter);
 app.use("/api/v1", CurrentRouter);
 
+
 CONNECTION(process.env.DATABASE_URL);
 app.listen(port, (req, res) => {
   console.log(`listening on on port ${port}`);
@@ -59,3 +60,4 @@ app.listen(port, (req, res) => {
 //     console.log(`server listening on port ${port}`);
 //   });
 // }
+ 
