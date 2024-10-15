@@ -41,7 +41,7 @@ export const savecurr = async (req, res) => {
       });
     }
     const decdata = cryptoJS.AES.decrypt(encdata, "dkfjakdfjdaljfajdfkjak");
-    const reldata = JSON.parse(decdata.toString(cryptoJS.enc.Utf8));
+                    
     console.log(reldata);
     // return;
     try {

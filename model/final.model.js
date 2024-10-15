@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const vatSchema = new mongoose.Schema({
   requestId: {
     type: String,
-    // required: true,
+    required: true,
   },
   vatCode: {
     type: String,
@@ -43,4 +43,4 @@ const vatSchema = new mongoose.Schema({
 
 const Final = mongoose.model("Final", vatSchema);
 
-module.exports = Final;
+export default Final;

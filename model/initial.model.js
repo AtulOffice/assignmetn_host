@@ -33,7 +33,7 @@ const vatSchema = new mongoose.Schema({
   upDown: {
     type: String,
     required: true,
-    enum: ["UP", "DOWN"], // Assuming "UP" or "DOWN" are the only valid values
+    enum: ["UP", "DOWN"],
   },
 });
 

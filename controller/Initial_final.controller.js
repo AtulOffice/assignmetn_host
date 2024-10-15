@@ -1,31 +1,247 @@
-// import Initial from "../model/initial model.js";
-// import Final from "../model/final.model.js";
 import cryptoJS from "crypto-js";
+import Initial from "../model/initial.model.js";
+import Final from "../model/final.model.js";
 
-export const saveinital = async (req, res) => {
+
+
+export const EncodeData = async (req, res) => {
   try {
-    const { vatCode, unitCode, date, time, bl, length, process, upDown } =
-      req.body;
-    if (process == "I") {
-      var encdata = cryptoJS.AES.encrypt(
-        JSON.stringify(req.body),
-        "dkfjakdfjdaljfajdfkjak"
-      ).toString();
-      return res
-        .status(200)
-        .json({ success: true, message: "Initial data saved", encdata });
+    const {
+      vatCode,
+      unitCode,
+      date,
+      time,
+      bl,
+      length,
+      process,
+      upDown,
+      RequestId,
+    } = req.body;
+    let data;
+    if (process === "I") {
+      data = {
+        vatCode,
+        unitCode,
+        date,
+        time,
+        bl,
+        length,
+        process,
+        upDown,
+        RequestId: `${vatCode}/${unitCode}/${process}/${length}`,
+      };
+    } else if (process === "F" && RequestId) {
+      data = req.body;
+    } else {
+      return res.status(404).json({
+        success: false,
+        message: "Invalid process type or missing RequestId",
+      });
     }
+
+    const encdata = cryptoJS.AES.encrypt(
+      JSON.stringify(data),
+      "dkfjakdfjdaljfajdfkjak"
+    ).toString();
+
+    return res.status(200).json({
+      success: true,
+      message:
+        process === "I" ? "Initial data Encrypted" : "Final data Encrypted",
+      content: { encdata },
+    });
   } catch (err) {
-    console.error("Error saving initial data:", err);
+    console.error("Error saving data:", err);
     return res.status(500).json({
       success: false,
-      message: "Error saving initial data",
+      message: "Error encrypting data",
       error: err.message,
     });
   }
 };
 
-export const savefinal = async (req, res) => {
-  console.log("helo");
-  return;
+// export const saveData = async (req, res) => {
+//   try {
+//     const encdata = req.body[0]?.encdata;
+//     if (!encdata) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "No encrypted data provided",
+//       });
+//     }
+//     const val = cryptoJS.AES.decrypt(encdata, "dkfjakdfjdaljfajdfkjak");
+//     const data = JSON.parse(val.toString(cryptoJS.enc.Utf8));
+//     if (!data) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "invalid encrypted data",
+//       });
+//     }
+//     if (data.process && data.process === "I" && data.RequestId) {
+//       const {
+//         vatCode,
+//         unitCode,
+//         date,
+//         time,
+//         bl,
+//         length,
+//         process,
+//         upDown,
+//         RequestId,
+//       } = data;
+//       const Indata = await Initial.create({
+//         vatCode,
+//         unitCode,
+//         date,
+//         time,
+//         bl,
+//         length,
+//         process,
+//         upDown,
+//       });
+//       return res.status(200).json({
+//         success: true,
+//         message: "Initial data saved",
+//         data: {
+//           RequestId: RequestId,
+//         },
+//       });
+//     } else if (data.process && data.process === "F" && data.RequestId) {
+//       const {
+//         vatCode,
+//         unitCode,
+//         date,
+//         time,
+//         bl,
+//         length,
+//         process,
+//         upDown,
+//         RequestId,
+//       } = data;
+//       const findata = await Final.create({
+//         vatCode,
+//         unitCode,
+//         date,
+//         time,
+//         bl,
+//         length,
+//         process,
+//         upDown,
+//         requestId: RequestId,
+//       });
+//       return res.status(200).json({
+//         success: true,
+//         message: "Final data saved",
+//       });
+//     } else {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Invalid process type or missing parameters",
+//       });
+//     }
+//   } catch (err) {
+//     console.error("Error saving initial data:", err);
+//     return res.status(500).json({
+//       success: false,
+//       message: "Error saving initial data",
+//       error: err.message,
+//     });
+//   }
+// };
+
+export const saveData = async (req, res) => {
+  try {
+    const encdata = req.body[0]?.encdata;
+    if (!encdata) {
+      return res.status(400).json({
+        success: false,
+        message: "No encrypted data provided",
+      });
+    }
+    let val;
+    try {
+      val = cryptoJS.AES.decrypt(encdata, "dkfjakdfjdaljfajdfkjak");
+      const data = JSON.parse(val.toString(cryptoJS.enc.Utf8));
+
+      if (!data) {
+        return res.status(400).json({
+          success: false,
+          message: "Invalid encrypted data",
+        });
+      }
+      if (data.process === "I" && data.RequestId) {
+        const {
+          vatCode,
+          unitCode,
+          date,
+          time,
+          bl,
+          length,
+          process,
+          upDown,
+          RequestId,
+        } = data;
+        const Indata = await Initial.create({
+          vatCode,
+          unitCode,
+          date,
+          time,
+          bl,
+          length,
+          process,
+          upDown,
+        });
+        return res.status(200).json({
+          success: true,
+          message: "Initial data saved",
+          data: { RequestId },
+        });
+      } else if (data.process === "F" && data.RequestId) {
+        const {
+          vatCode,
+          unitCode,
+          date,
+          time,
+          bl,
+          length,
+          process,
+          upDown,
+          RequestId,
+        } = data;
+        const findata = await Final.create({
+          vatCode,
+          unitCode,
+          date,
+          time,
+          bl,
+          length,
+          process,
+          upDown,
+          requestId: RequestId,
+        });
+        return res.status(200).json({
+          success: true,
+          message: "Final data saved",
+        });
+      } else {
+        return res.status(400).json({
+          success: false,
+          message: "Invalid process type or missing parameters",
+        });
+      }
+    } catch (decryptionError) {
+      console.error("Error during decryption:", decryptionError);
+      return res.status(400).json({
+        success: false,
+        message: "Failed to decrypt data",
+      });
+    }
+  } catch (err) {
+    console.error("Error saving data:", err);
+    return res.status(500).json({
+      success: false,
+      message: "Error saving data",
+      error: err.message,
+    });
+  }
 };
