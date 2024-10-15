@@ -237,7 +237,7 @@ export const saveData = async (req, res) => {
       });
     }
   } catch (err) {
-    console.error("Error saving data:", err);
+    console.log("Error saving data:", err);
     return res.status(500).json({
       success: false,
       message: "Error saving data",

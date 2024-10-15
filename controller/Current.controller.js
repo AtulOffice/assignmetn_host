@@ -4,7 +4,6 @@ import cryptoJS from "crypto-js";
 export const EncodeCurr = async (req, res) => {
   try {
     const data = req.body;
-    console.log(req.body);
     if (!data) {
       return res.status(400).json({
         success: false,
@@ -19,7 +18,6 @@ export const EncodeCurr = async (req, res) => {
       success: true,
       message: "data encryptd successfully",
       content: { encdata },
-      // Initialval: req.body,
     });
   } catch (err) {
     console.error("Error saving initial data:", err);
@@ -41,9 +39,7 @@ export const savecurr = async (req, res) => {
       });
     }
     const decdata = cryptoJS.AES.decrypt(encdata, "dkfjakdfjdaljfajdfkjak");
-                    
-    console.log(reldata);
-    // return;
+    const reldata = JSON.parse(decdata.toString(cryptoJS.enc.Utf8));
     try {
       await Current.create(reldata);
       return res
