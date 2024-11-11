@@ -19,6 +19,13 @@ app.use("/api/v1", CurrentRouter);
 
 
 CONNECTION(process.env.DATABASE_URL);
+app.get('/', (req, res) => {
+  return res.status(201).json({
+    success: true,
+    message: "API is running successfully"
+  })
+})
+
 app.listen(port, (req, res) => {
   console.log(`listening on on port ${port}`);
 });

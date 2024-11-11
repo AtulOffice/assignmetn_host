@@ -1,0 +1,66 @@
+2024-10-19 15:47:30 - Stopping excisedataservice.exe
+2024-10-19 15:47:30 - ProcessKill 11508
+2024-10-19 15:47:30 - Shutdown exception
+Message:A system shutdown is in progress.
+
+Stacktrace:   at System.Runtime.InteropServices.Marshal.ThrowExceptionForHRInternal(Int32 errorCode, IntPtr errorInfo)
+   at System.Management.ManagementScope.InitializeGuts(Object o)
+   at System.Management.ManagementScope.Initialize()
+   at System.Management.ManagementObjectSearcher.Initialize()
+   at System.Management.ManagementObjectSearcher.Get()
+   at winsw.WrapperService.GetChildPids(Int32 pid)
+   at winsw.WrapperService.StopProcessAndChildren(Int32 pid)
+   at winsw.WrapperService.StopIt()
+   at winsw.WrapperService.OnShutdown()
+2024-10-19 15:51:46 - Starting C:\Program Files\nodejs\node.exe  --harmony E:\assignment\node_modules\node-windows\lib\wrapper.js --file E:\assignment\app.js --scriptoptions= --log "ExcisedataService wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2024-10-19 15:51:46 - Started 12408
+2024-10-19 10:27:04 - Starting C:\Program Files\nodejs\node.exe  --harmony E:\assignment\node_modules\node-windows\lib\wrapper.js --file E:\assignment\app.js --scriptoptions= --log "ExcisedataService wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2024-10-19 10:27:04 - Started 6568
+2024-10-19 10:28:11 - Stopping excisedataservice.exe
+2024-10-19 10:28:11 - ProcessKill 6568
+2024-10-19 10:28:11 - Shutdown exception
+Message:A system shutdown is in progress.
+
+Stacktrace:   at System.Runtime.InteropServices.Marshal.ThrowExceptionForHRInternal(Int32 errorCode, IntPtr errorInfo)
+   at System.Management.ManagementScope.InitializeGuts(Object o)
+   at System.Management.ManagementScope.Initialize()
+   at System.Management.ManagementObjectSearcher.Initialize()
+   at System.Management.ManagementObjectSearcher.Get()
+   at winsw.WrapperService.GetChildPids(Int32 pid)
+   at winsw.WrapperService.StopProcessAndChildren(Int32 pid)
+   at winsw.WrapperService.StopIt()
+   at winsw.WrapperService.OnShutdown()
+2024-10-19 10:28:45 - Starting C:\Program Files\nodejs\node.exe  --harmony E:\assignment\node_modules\node-windows\lib\wrapper.js --file E:\assignment\app.js --scriptoptions= --log "ExcisedataService wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2024-10-19 10:28:45 - Started 6844
+2024-10-19 10:45:22 - Starting C:\Program Files\nodejs\node.exe  --harmony E:\assignment\node_modules\node-windows\lib\wrapper.js --file E:\assignment\app.js --scriptoptions= --log "ExcisedataService wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2024-10-19 10:45:22 - Started 6512
+2024-10-19 17:29:26 - Stopping excisedataservice.exe
+2024-10-19 17:29:26 - ProcessKill 6512
+2024-10-19 17:29:26 - Shutdown exception
+Message:A system shutdown is in progress.
+
+Stacktrace:   at System.Runtime.InteropServices.Marshal.ThrowExceptionForHRInternal(Int32 errorCode, IntPtr errorInfo)
+   at System.Management.ManagementScope.InitializeGuts(Object o)
+   at System.Management.ManagementScope.Initialize()
+   at System.Management.ManagementObjectSearcher.Initialize()
+   at System.Management.ManagementObjectSearcher.Get()
+   at winsw.WrapperService.GetChildPids(Int32 pid)
+   at winsw.WrapperService.StopProcessAndChildren(Int32 pid)
+   at winsw.WrapperService.StopIt()
+   at winsw.WrapperService.OnShutdown()
+2024-10-19 17:30:05 - Starting C:\Program Files\nodejs\node.exe  --harmony E:\assignment\node_modules\node-windows\lib\wrapper.js --file E:\assignment\app.js --scriptoptions= --log "ExcisedataService wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2024-10-19 17:30:05 - Started 7584
+2024-10-19 17:51:15 - Stopping excisedataservice.exe
+2024-10-19 17:51:15 - ProcessKill 7584
+2024-10-19 17:51:15 - Found child process: 7664 Name: conhost.exe
+2024-10-19 17:51:15 - Found child process: 8528 Name: node.exe
+2024-10-19 17:51:15 - Stopping process 7664
+2024-10-19 17:51:15 - Send SIGINT 7664
+2024-10-19 17:51:15 - SIGINT to 7664 failed - Killing as fallback
+2024-10-19 17:51:16 - Stopping process 8528
+2024-10-19 17:51:16 - Send SIGINT 8528
+2024-10-19 17:51:16 - SIGINT to 8528 failed - Killing as fallback
+2024-10-19 17:51:16 - Stopping process 7584
+2024-10-19 17:51:16 - Send SIGINT 7584
+2024-10-19 17:51:16 - SIGINT to 7584 failed - Killing as fallback
+2024-10-19 17:51:16 - Finished excisedataservice.exe
