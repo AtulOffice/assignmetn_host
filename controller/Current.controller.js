@@ -46,7 +46,7 @@ export const savecurr = async (req, res) => {
         .status(200)
         .json({
           success: true, message: "data saved successfully",
-          RequestId: `${reldata.vatCode}/${reldata.date.split('-')[0]}/${reldata.unitCode}`
+          requestId: `${reldata.vatCode}/${reldata.date.split('-')[0]}/${reldata.unitCode}`
         });
     } catch {
       return res.status(500).json({
