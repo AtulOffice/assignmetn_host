@@ -132,6 +132,7 @@ export const saveData = async (req, res) => {
         });
         return res.status(200).json({
           success: true,
+          errorCode: 200,
           message: "Final data saved",
         });
       } else {
