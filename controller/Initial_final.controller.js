@@ -105,7 +105,7 @@ export const saveData = async (req, res) => {
         return res.status(200).json({
           success: true,
           message: "Initial data saved",
-          data: { requestId },
+          data: { RequestId: requestId },
         });
       } else if (data.process === "F" && data.requestId) {
         const {
