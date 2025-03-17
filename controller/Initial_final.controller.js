@@ -45,6 +45,7 @@ export const EncodeData = async (req, res) => {
     ).toString();
 
     return res.status(200).json({
+      errorCode: 200,
       success: true,
       message:
         process === "I" ? "Initial data Encrypted" : "Final data Encrypted",
@@ -53,6 +54,7 @@ export const EncodeData = async (req, res) => {
   } catch (err) {
     console.error("Error saving data:", err);
     return res.status(500).json({
+      errorCode: 404,
       success: false,
       message: "Error encrypting data",
       error: err.message,
@@ -65,6 +67,7 @@ export const saveData = async (req, res) => {
     const encdata = req.body[0]?.encdata;
     if (!encdata) {
       return res.status(400).json({
+        errorCode: 404,
         success: false,
         message: "No encrypted data provided",
       });
@@ -76,6 +79,7 @@ export const saveData = async (req, res) => {
 
       if (!data) {
         return res.status(400).json({
+          errorCode: 404,
           success: false,
           message: "Invalid encrypted data",
         });
@@ -103,6 +107,7 @@ export const saveData = async (req, res) => {
           upDown,
         });
         return res.status(200).json({
+          errorCode: 200,
           success: true,
           message: "Initial data saved",
           data: { RequestId: requestId },
@@ -137,6 +142,7 @@ export const saveData = async (req, res) => {
         });
       } else {
         return res.status(400).json({
+          errorCode: 404,
           success: false,
           message: "Invalid process type or missing parameters",
         });
@@ -144,6 +150,7 @@ export const saveData = async (req, res) => {
     } catch (decryptionError) {
       console.error("Error during decryption:", decryptionError);
       return res.status(400).json({
+        errorCode: 404,
         success: false,
         message: "Failed to decrypt data",
       });
@@ -151,6 +158,7 @@ export const saveData = async (req, res) => {
   } catch (err) {
     console.log("Error saving data:", err);
     return res.status(500).json({
+      errorCode: 404,
       success: false,
       message: "Error saving data",
       error: err.message,
